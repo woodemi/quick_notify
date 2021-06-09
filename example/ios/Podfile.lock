@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - quick_notify (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - quick_notify (from `.symlinks/plugins/quick_notify/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  quick_notify:
+    :path: ".symlinks/plugins/quick_notify/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  quick_notify: a5366a63bdaf51e1456fdd3811a900ab89f7c1f9
+
+PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+
+COCOAPODS: 1.10.1
