@@ -3,6 +3,9 @@
 // This must be included before many other Windows headers.
 #include <windows.h>
 
+#include <winrt/Windows.UI.Notifications.h>
+#include <winrt/Windows.Data.Xml.Dom.h>
+
 // For getPlatformVersion; remove unless needed for your plugin implementation.
 #include <VersionHelpers.h>
 
@@ -13,6 +16,10 @@
 #include <map>
 #include <memory>
 #include <sstream>
+
+using namespace winrt;
+using namespace Windows::UI::Notifications;
+using namespace Windows::Data::Xml::Dom;
 
 namespace {
 
@@ -29,6 +36,8 @@ class QuickNotifyPlugin : public flutter::Plugin {
   void HandleMethodCall(
       const flutter::MethodCall<flutter::EncodableValue> &method_call,
       std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result);
+  
+  ToastNotifier toastNotifier_{ ToastNotificationManager::CreateToastNotifier(L"quick_notify") };
 };
 
 // static
@@ -67,6 +76,16 @@ void QuickNotifyPlugin::HandleMethodCall(
       version_stream << "7";
     }
     result->Success(flutter::EncodableValue(version_stream.str()));
+  } else if (method_call.method_name().compare("notify") == 0) {
+    auto args = std::get<flutter::EncodableMap>(*method_call.arguments());
+    auto content = std::get<std::string>(args[flutter::EncodableValue("content")]);
+
+    auto toastContent = ToastNotificationManager::GetTemplateContent(ToastTemplateType::ToastText01);
+    XmlNodeList xmlNodeList = toastContent.GetElementsByTagName(L"text");
+    xmlNodeList.Item(0).AppendChild(toastContent.CreateTextNode(winrt::to_hstring(content)));
+    ToastNotification toastNotification{ toastContent };
+    toastNotifier_.Show(toastNotification);
+    result->Success(nullptr);
   } else {
     result->NotImplemented();
   }
