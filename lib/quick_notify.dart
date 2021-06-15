@@ -11,4 +11,12 @@ class QuickNotify {
     final String version = await _channel.invokeMethod('getPlatformVersion');
     return version;
   }
+
+  static void notify({
+    String content,
+  }) {
+    _channel.invokeMethod('notify', {
+      'content': content,
+    });
+  }
 }

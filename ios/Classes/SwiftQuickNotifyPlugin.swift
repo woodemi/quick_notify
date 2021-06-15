@@ -9,6 +9,24 @@ public class SwiftQuickNotifyPlugin: NSObject, FlutterPlugin {
   }
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-    result("iOS " + UIDevice.current.systemVersion)
+    switch call.method {
+    case "getPlatformVersion":
+      result("iOS " + UIDevice.current.systemVersion)
+    case "notify":
+      let args = call.arguments as! Dictionary<String, Any>
+      let content = args["content"] as! String
+
+      let notification = UNMutableNotificationContent()
+      notification.body = content
+      let request = UNNotificationRequest(identifier: "quick_notify", content: notification, trigger: nil)
+      UNUserNotificationCenter.current().add(request) { error in
+        if (error != nil) {
+          print("quick_notify error: \(error)")
+        }
+      }
+      result(nil)
+    default:
+      result(FlutterMethodNotImplemented)
+    }
   }
 }
