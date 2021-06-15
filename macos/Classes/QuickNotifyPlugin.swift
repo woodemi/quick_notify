@@ -12,6 +12,14 @@ public class QuickNotifyPlugin: NSObject, FlutterPlugin {
     switch call.method {
     case "getPlatformVersion":
       result("macOS " + ProcessInfo.processInfo.operatingSystemVersionString)
+    case "notify":
+      let args = call.arguments as! Dictionary<String, Any>
+      let content = args["content"] as! String
+
+      let notification = NSUserNotification()
+      notification.informativeText = content
+      NSUserNotificationCenter.default.deliver(notification)
+      result(nil)
     default:
       result(FlutterMethodNotImplemented)
     }
