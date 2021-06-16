@@ -1,8 +1,8 @@
 name: quick_notify
 description: A new flutter plugin project.
-version: 0.0.1
-author:
-homepage:
+version: 0.1.0
+homepage: https://github.com/woodemi
+repository: https://github.com/woodemi/quick_notify
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
