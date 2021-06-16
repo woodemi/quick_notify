@@ -13,7 +13,7 @@ class QuickNotify {
   }
 
   static void notify({
-    String content,
+    String? content,
   }) {
     _channel.invokeMethod('notify', {
       'content': content,
