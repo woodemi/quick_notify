@@ -1,12 +1,12 @@
 name: quick_notify
 description: A new flutter plugin project.
-version: 0.1.0
+version: 0.1.0+2
 homepage: https://github.com/woodemi
 repository: https://github.com/woodemi/quick_notify
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
-  flutter: ">=1.20.0"
+  sdk: ">=2.12.0 <3.0.0"
+  flutter: ">=2.0.0"
 
 dependencies:
   flutter:
