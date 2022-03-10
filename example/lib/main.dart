@@ -24,7 +24,7 @@ class _MyAppState extends State<MyApp> {
             ElevatedButton(
               child: Text('notify'),
               onPressed: () {
-                QuickNotify.notify(content: 'My content');
+                QuickNotify.notify(content: 'My content',title: "This is a title");
               },
             ),
           ],
