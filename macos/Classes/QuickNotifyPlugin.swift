@@ -10,8 +10,6 @@ public class QuickNotifyPlugin: NSObject, FlutterPlugin {
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
     switch call.method {
-    case "getPlatformVersion":
-      result("macOS " + ProcessInfo.processInfo.operatingSystemVersionString)
     case "notify":
       let args = call.arguments as! Dictionary<String, Any>
       let content = args["content"] as! String

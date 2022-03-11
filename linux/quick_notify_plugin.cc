@@ -2,7 +2,6 @@
 
 #include <flutter_linux/flutter_linux.h>
 #include <gtk/gtk.h>
-#include <sys/utsname.h>
 #include <libnotify/notify.h>
 
 #include <cstring>
@@ -25,13 +24,7 @@ static void quick_notify_plugin_handle_method_call(
 
   const gchar* method = fl_method_call_get_name(method_call);
 
-  if (strcmp(method, "getPlatformVersion") == 0) {
-    struct utsname uname_data = {};
-    uname(&uname_data);
-    g_autofree gchar *version = g_strdup_printf("Linux %s", uname_data.version);
-    g_autoptr(FlValue) result = fl_value_new_string(version);
-    response = FL_METHOD_RESPONSE(fl_method_success_response_new(result));
-  } else if (strcmp(method, "notify") == 0) {
+  if (strcmp(method, "notify") == 0) {
     FlValue* args = fl_method_call_get_args(method_call);
     FlValue* content = fl_value_lookup_string(args, "content");
 

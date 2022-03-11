@@ -12,7 +12,6 @@ import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
-import io.flutter.plugin.common.PluginRegistry.Registrar
 
 /** QuickNotifyPlugin */
 class QuickNotifyPlugin: FlutterPlugin, MethodCallHandler {
@@ -43,9 +42,7 @@ class QuickNotifyPlugin: FlutterPlugin, MethodCallHandler {
   }
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
-    if (call.method == "getPlatformVersion") {
-      result.success("Android ${android.os.Build.VERSION.RELEASE}")
-    } else if (call.method == "notify") {
+    if (call.method == "notify") {
       val args = call.arguments as Map<String, Any>
       val content = args["content"] as String
 

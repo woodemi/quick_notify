@@ -10,8 +10,6 @@ public class SwiftQuickNotifyPlugin: NSObject, FlutterPlugin {
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
     switch call.method {
-    case "getPlatformVersion":
-      result("iOS " + UIDevice.current.systemVersion)
     case "notify":
       let args = call.arguments as! Dictionary<String, Any>
       let content = args["content"] as! String
