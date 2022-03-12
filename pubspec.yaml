@@ -11,6 +11,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
   plugin_platform_interface: ^2.1.2
 
 dev_dependencies:
@@ -39,6 +41,9 @@ flutter:
         pluginClass: QuickNotifyPlugin
       linux:
         pluginClass: QuickNotifyPlugin
+      web:
+        pluginClass: QuickNotifyWeb
+        fileName: src/quick_notify_web.dart
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:
