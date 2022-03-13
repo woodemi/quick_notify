@@ -20,6 +20,10 @@ QuickNotifyPlatform get _platform {
 }
 
 class QuickNotify {
+  static Future<bool> hasPermission() => _platform.hasPermission();
+
+  static Future<bool> requestPermission() => _platform.requestPermission();
+
   static void notify({
     String? content,
   }) => _platform.notify(

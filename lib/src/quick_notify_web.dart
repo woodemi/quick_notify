@@ -9,6 +9,18 @@ class QuickNotifyWeb extends QuickNotifyPlatform {
   }
 
   @override
+  Future<bool> hasPermission() async {
+    // TODO: implement hasPermission
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<bool> requestPermission() async {
+    // TODO: implement hasPermission
+    throw UnimplementedError();
+  }
+
+  @override
   void notify({
     String? content
   }) {
