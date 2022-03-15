@@ -10,6 +10,14 @@ public class SwiftQuickNotifyPlugin: NSObject, FlutterPlugin {
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
     switch call.method {
+    case "hasPermission":
+      UNUserNotificationCenter.current().getNotificationSettings { settings in
+        result(settings.authorizationStatus != .denied)
+      }
+    case "requestPermission":
+      UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+        result(granted)
+      }
     case "notify":
       let args = call.arguments as! Dictionary<String, Any>
       let content = args["content"] as! String

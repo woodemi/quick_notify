@@ -2,6 +2,7 @@ package com.example.quick_notify
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.bluetooth.BluetoothManager
 import android.content.Context
 import android.os.Build
 import androidx.annotation.NonNull
@@ -42,7 +43,21 @@ class QuickNotifyPlugin: FlutterPlugin, MethodCallHandler {
   }
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
-    if (call.method == "notify") {
+    if (call.method == "hasPermission") {
+      if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S) {
+        result.success(true)
+      } else {
+        // TODO Android 13 notification permission
+        result.notImplemented()
+      }
+    } else if (call.method == "requestPermission") {
+      if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S) {
+        result.success(true)
+      } else {
+        // TODO Android 13 notification permission
+        result.notImplemented()
+      }
+    } else if (call.method == "notify") {
       val args = call.arguments as Map<String, Any>
       val content = args["content"] as String
 
