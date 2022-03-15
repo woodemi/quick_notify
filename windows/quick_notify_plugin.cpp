@@ -63,9 +63,9 @@ void QuickNotifyPlugin::HandleMethodCall(
     const flutter::MethodCall<flutter::EncodableValue> &method_call,
     std::unique_ptr<flutter::MethodResult<flutter::EncodableValue>> result) {
   if (method_call.method_name().compare("hasPermission") == 0) {
-    result->Success(EncodableValue(true));
+    result->Success(flutter::EncodableValue(true));
   } else if (method_call.method_name().compare("requestPermission") == 0) {
-    result->Success(EncodableValue(true));
+    result->Success(flutter::EncodableValue(true));
   } else if (method_call.method_name().compare("notify") == 0) {
     auto args = std::get<flutter::EncodableMap>(*method_call.arguments());
     auto content = std::get<std::string>(args[flutter::EncodableValue("content")]);
