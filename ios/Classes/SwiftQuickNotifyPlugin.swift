@@ -20,9 +20,11 @@ public class SwiftQuickNotifyPlugin: NSObject, FlutterPlugin {
       }
     case "notify":
       let args = call.arguments as! Dictionary<String, Any>
+      let title = args["title"] as! String
       let content = args["content"] as! String
 
       let notification = UNMutableNotificationContent()
+      notification.title = title
       notification.body = content
       let request = UNNotificationRequest(identifier: "quick_notify", content: notification, trigger: nil)
       UNUserNotificationCenter.current().add(request) { error in
