@@ -1,3 +1,7 @@
+## 0.2.1
+
+- Add `title` to `notify` method
+
 ## 0.2.0
 
 - Support Web

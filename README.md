@@ -19,5 +19,8 @@ print('requestPermission $requestPermission');
 ### Post notification
 
 ```dart
-QuickNotify.notify(content: 'My content');
+QuickNotify.notify(
+  title: 'My title',
+  content: 'My content',
+);
 ```
