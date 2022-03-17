@@ -32,10 +32,11 @@ static void quick_notify_plugin_handle_method_call(
     response = FL_METHOD_RESPONSE(fl_method_success_response_new(result));
   } else if (strcmp(method, "notify") == 0) {
     FlValue* args = fl_method_call_get_args(method_call);
-    FlValue* content = fl_value_lookup_string(args, "content");
+    const gchar* title = fl_value_get_string(fl_value_lookup_string(args, "title"));
+    const gchar* content = fl_value_get_string(fl_value_lookup_string(args, "content"));
 
     notify_init("quick_notify");
-    NotifyNotification *n = notify_notification_new(0, fl_value_get_string(content), 0);
+    NotifyNotification *n = notify_notification_new(title, content, 0);
     notify_notification_show(n, 0);
     response = FL_METHOD_RESPONSE(fl_method_success_response_new(nullptr));
   } else {
