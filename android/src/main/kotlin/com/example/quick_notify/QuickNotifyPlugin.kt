@@ -59,6 +59,7 @@ class QuickNotifyPlugin: FlutterPlugin, MethodCallHandler {
       }
     } else if (call.method == "notify") {
       val args = call.arguments as Map<String, Any>
+      val title = args["title"] as String
       val content = args["content"] as String
 
       val smallIconRes = applicationContext.resources.getIdentifier(
@@ -68,6 +69,7 @@ class QuickNotifyPlugin: FlutterPlugin, MethodCallHandler {
       )
       val notification = NotificationCompat.Builder(applicationContext, channelProps.id)
         .setSmallIcon(smallIconRes)
+        .setContentTitle(title)
         .setContentText(content)
         .build()
       notificationManager.notify(0, notification)

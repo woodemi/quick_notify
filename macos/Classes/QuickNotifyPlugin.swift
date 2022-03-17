@@ -29,10 +29,12 @@ public class QuickNotifyPlugin: NSObject, FlutterPlugin {
       }
     case "notify":
       let args = call.arguments as! Dictionary<String, Any>
+      let title = args["title"] as! String
       let content = args["content"] as! String
 
       if #available(macOS 10.14, *) {
         let notification = UNMutableNotificationContent()
+        notification.title = title
         notification.body = content
         let request = UNNotificationRequest(identifier: "quick_notify", content: notification, trigger: nil)
         UNUserNotificationCenter.current().add(request) { error in
@@ -42,6 +44,7 @@ public class QuickNotifyPlugin: NSObject, FlutterPlugin {
         }
       } else {
         let notification = NSUserNotification()
+        notification.title = title
         notification.informativeText = content
         NSUserNotificationCenter.default.deliver(notification)
       }

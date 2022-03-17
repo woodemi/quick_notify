@@ -68,11 +68,13 @@ void QuickNotifyPlugin::HandleMethodCall(
     result->Success(flutter::EncodableValue(true));
   } else if (method_call.method_name().compare("notify") == 0) {
     auto args = std::get<flutter::EncodableMap>(*method_call.arguments());
+    auto title = std::get<std::string>(args[flutter::EncodableValue("title")]);
     auto content = std::get<std::string>(args[flutter::EncodableValue("content")]);
 
-    auto toastContent = ToastNotificationManager::GetTemplateContent(ToastTemplateType::ToastText01);
+    auto toastContent = ToastNotificationManager::GetTemplateContent(ToastTemplateType::ToastText02);
     XmlNodeList xmlNodeList = toastContent.GetElementsByTagName(L"text");
-    xmlNodeList.Item(0).AppendChild(toastContent.CreateTextNode(winrt::to_hstring(content)));
+    xmlNodeList.Item(0).AppendChild(toastContent.CreateTextNode(winrt::to_hstring(title)));
+    xmlNodeList.Item(1).AppendChild(toastContent.CreateTextNode(winrt::to_hstring(content)));
     ToastNotification toastNotification{ toastContent };
     toastNotifier_.Show(toastNotification);
     result->Success(nullptr);

@@ -17,10 +17,13 @@ class MethodChannelQuickNotify extends QuickNotifyPlatform {
     return result;
   }
 
+  @override
   void notify({
+    required String title,
     String? content,
   }) {
     _channel.invokeMethod('notify', {
+      'title': title,
       'content': content,
     });
   }

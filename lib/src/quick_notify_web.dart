@@ -25,8 +25,9 @@ class QuickNotifyWeb extends QuickNotifyPlatform {
 
   @override
   void notify({
-    String? content
+    required String title,
+    String? content,
   }) {
-    Notification('quick_notify', body: content);
+    Notification(title, body: content);
   }
 }
