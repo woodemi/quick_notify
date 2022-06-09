@@ -1,3 +1,7 @@
+# DEPRECATED
+
+This repo is deprecated; please use the new mono repo https://github.com/woodemi/quick.flutter
+
 # quick_notify
 
 A cross-platform (Android/iOS/Web/Windows/macOS/Linux) notification plugin for Flutter
